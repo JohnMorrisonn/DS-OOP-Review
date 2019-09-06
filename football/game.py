@@ -1,7 +1,11 @@
 '''Game class to model a football game
 '''
-from teams import team_names
+import sys
+sys.path.append(r'C:\Users\John\Lambda\OOPs\Classes\OOP-football\DS-OOP-Review\football')
+
+from possible_values import team_names
 import random
+
 
 
 class Game:
@@ -62,8 +66,17 @@ class Game:
         else:
             self.score[team] += 3
 
-    def safety(self, TODO):
-        pass  # TODO (a safety is worth 2 points)
+    def safety(self, team):
+        '''Record safety for a team
+        Parameters
+        ------------------------------
+        team : str
+            team that scored the safety
+        '''
+        if team not in self.teams:
+            raise ValueError('team parameter must be in self.teams')
+        else:
+            self.score[team] += 2
 
     def get_winning_team(self):
         '''When game is done, this can be run to add attributes
@@ -79,4 +92,13 @@ class Game:
         self.winning_team_ = k[v.index(max(v))]
         self.losing_team_ = k[v.index(min(v))]
 
-        return self.winning_team_, self.losing_team_
+        return self.winning_team_
+
+o_vs_g = Game(teams=['Gators', 'Ospreys'], location='Duval', week=3)
+
+o_vs_g.touchdown('Ospreys')
+o_vs_g.field_goal('Ospreys')
+o_vs_g.safety('Gators')
+o_vs_g.get_winning_team()
+
+print(o_vs_g.get_winning_team())

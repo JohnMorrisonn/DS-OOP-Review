@@ -8,7 +8,7 @@ from random import randint, uniform, sample
 def generate_rand_games(n=15):
     '''Generate n random games using value lists in possible_values
     '''
-    # Begin with enpty list
+    # Begin with empty list
     games = []
 
     # For the specified number of games, create an instance of the Game
@@ -20,16 +20,16 @@ def generate_rand_games(n=15):
 
         # Give each team a random number (from 0 to 3) of each:
         # touchdowns and field goals
-        for i in list(range(randint(0, 4))):
+        for _ in list(range(randint(0, 4))):
             game.field_goal(game.teams[0])
 
-        for j in list(range(randint(0, 4))):
+        for _ in list(range(randint(0, 4))):
             game.field_goal(game.teams[1])
 
-        for k in list(range(randint(0, 4))):
+        for _ in list(range(randint(0, 4))):
             game.touchdown(game.teams[0])
 
-        for l in list(range(randint(0, 4))):
+        for _ in list(range(randint(0, 4))):
             game.touchdown(game.teams[1])
 
         games.append(game)
@@ -69,9 +69,9 @@ def season_report(games):
     # Calculates the average points scored by winning team and losing team
     # in a game
     winning_team_average = (winning_team_total_points /
-                            len(winning_team))
+                            len(winning_teams))
     losing_team_average = (losing_team_total_points /
-                           len(losing_team))
+                           len(losing_teams))
 
     # Instantiate dict to keep track of individual team records
     team_records = {}

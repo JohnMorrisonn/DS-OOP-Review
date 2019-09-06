@@ -3,9 +3,23 @@
 
 
 class Player:
-    '''Dosctring TODO
-    THIS IS NOT A VERY GENERALIZABLE MODEL IF YOU KNOW THINGS ABOUT FOOTBALL
-    and that's okay
+    '''Models Players of the football teams.
+
+    Parameters
+    ----------------------------------------
+    name : str
+        actual player name
+    yards : int
+        how many yards the player ran/passed the ball
+    touchdowns : int
+        how many touchdowns the player scored
+    safety : int
+        how many safeties the player forced
+    interceptions : int
+        How many times the player intercepted the ball
+    field goals : int
+        how many field goals the player achieved
+
     '''
     def __init__(self, name=None, yards=120, touchdowns=5, safety=1,
                  interceptions=0, field_goals=3):
@@ -15,14 +29,6 @@ class Player:
         self.safety = safety
         self.interceptions = interceptions
         self.field_goals = field_goals
-
-    def get_points(self):
-        '''Gets points scored by the player from stats
-        '''
-        td_points = 6 * self.stats['td']
-        safety_points = 2 * self.stats['safety']
-        total_points = td_points + safety_points
-        return total_points
 
 
 class Quarterback(Player):
@@ -41,5 +47,20 @@ class Quarterback(Player):
         score = self.completed_passes - (2 * self.interceptions)
         return score
 
+class Defense(Player):
+    '''Override certain parameters of the default Player class and add some
+    functionality unique to defensive player
+    '''
+    def __init__(self, name=None, tackles=10, sacks=5, interceptions=2, safety=3):
+        super().__init__(name=name, yards=0, touchdowns=0,
+                        safety=safety, interceptions=interceptions)
+        self.tackles = tackles
+        self.sacks = sacks
+
+
 # TODO - refine the default player stats and/or make a defensive player default
 # with number of tackles, sacks, interceptions etc.
+John = Defense()
+print(John.sacks)
+print(John.name)
+qb = Quarterback(Player())
